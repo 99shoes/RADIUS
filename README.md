@@ -44,6 +44,7 @@ as the supplicant with successful or failed EAP authentication per test scenario
 3. Failed RADIUS authentication (wrong Identity) by the authentication server;
 4. Failed RADIUS authentication (wrong authentication type) by the authentication server;
 # RADIUS Flow Chart ref by RFC2716
+、、、js
 Authenticating peer     NAS                    RADIUS server
 -------------------     ---                    -------------
                         <- EAP-Request/
@@ -93,4 +94,4 @@ EAP-Response/
                                                  EAP-Message/EAP-Success
                                                  (other attributes)
                         <- EAP-Success
-
+、、、
