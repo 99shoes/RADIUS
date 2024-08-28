@@ -57,7 +57,7 @@ Open Fronthaul network components (such as O-RU and O-DU) should support the rol
 ## RADIUS Flow Chart ref by RFC2716
 ```js
 
-                        Authenticating peer     NAS                    RADIUS server
+                        Supplicant                Authenticator               RADIUS server
                         -------------------     ---                    -------------
                                                 <- EAP-Request/
                                                    EAP-Type=EAP-TLS
