@@ -4,7 +4,8 @@
 
 ## Purpose
 
-According to **O-RAN.WG11.Security-Test-Specifications-v04**, the goal is to implement security tests for Open Fronthaul and complete the four test items for Supplicant Validation.
+根據 **O-RAN.WG11.Security-Test-Specifications-v04**，實作 Open Fronthaul 的安全測試，完成 Supplicant Validation 的四種測試項目。
+
 
 ## Test Item Details
 
