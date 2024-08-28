@@ -1,49 +1,57 @@
 # RADIUS
-Supplicant->Authenticator->RADIUS coding
 
-# Purpose
-根據 O-RAN.WG11.Security-Test-Specifications-v04，實作 Open Fronthaul 的安全測試，完成 Supplicant Validation 的四種測試項目。
+**Implementation Flow**: Supplicant → Authenticator → RADIUS Coding
 
-# 測試項目詳情
-測試項目名稱: Supplicant Validation
-需求名稱: O-RAN 元件的 Supplicant 功能
-需求參考: O-RAN Security Requirements Specifications 4.0 [5] 第 5.2.5.5.2 條
-需求描述: 開放前傳網絡中 Supplicant 的要求
-威脅參考: T-FRHAUL-02
-O-RAN 元件參考: O-DU, O-RU
-測試描述與適用性
-開放前傳網絡元件（如 O-RU 和 O-DU）應支援基於埠的網絡存取控制協議 802.1X 的 Supplicant 角色。本測試驗證網絡元件在使用 EAP TLS 驗證進行埠連接請求時的 Supplicant 功能，符合 802.1X-2020 [11] 的規範。
+## Purpose
 
-測試設置與配置
-DUT（Device Under Test）: 啟用了 802.1X 的 O-RAN 元件，其開放前傳接口將被測試。
-RADIUS 伺服器: 設置並啟動一個認證 RADIUS 伺服器（例如，在 Linux 上使用 FreeRADIUS），配置 root、server 和 client 證書，以及相關的 .cnf 和 eap.conf 文件。
-Authenticator: 使用 802.1X 測試工具的主機或設備作為驗證器，配置為使用 EAP TLS 驗證，並將上述 RADIUS 伺服器設為其認證伺服器。
-測試流程
-設置驗證環境
+According to **O-RAN.WG11.Security-Test-Specifications-v04**, the goal is to implement security tests for Open Fronthaul and complete the four test items for Supplicant Validation.
 
-配置並啟動 RADIUS 伺服器，確保所有必要的證書和配置文件已正確設置。
-設置 802.1X 測試工具作為驗證器，並配置使用 EAP TLS 驗證。
-執行測試
+## Test Item Details
 
-配置並啟用 O-RAN 元件的開放前傳接口，作為 Supplicant 向驗證器發起埠連接請求。
-觀察並記錄整個 802.1X 驗證過程，確保流程順利完成或按照預期失敗。
-測試場景
-正確的身份與證書
+- **Test Item Name**: Supplicant Validation
+- **Requirement Name**: Supplicant Function of O-RAN Component
+- **Requirement Reference**: O-RAN Security Requirements Specifications 4.0 [5], Clause 5.2.5.5.2
+- **Requirement Description**: Requirements for Supplicant in the Open Fronthaul Network
+- **Threat Reference**: T-FRHAUL-02
+- **O-RAN Component Reference**: O-DU, O-RU
 
-O-RAN 元件使用正確的身份（Certificate DN）和已在 RADIUS 伺服器上配置的客戶端證書。
-預期結果: RADIUS 認證成功，允許網絡存取。
-正確的身份與錯誤的證書
+## Test Description and Applicability
 
-O-RAN 元件使用正確的身份（Certificate DN）但使用未在 RADIUS 伺服器上配置的客戶端證書。
-預期結果: RADIUS 認證失敗，拒絕網絡存取。
-錯誤的身份
+Open Fronthaul network components (such as O-RU and O-DU) should support the role of Supplicant in the **802.1X** protocol for port-based network access control. This test validates the Supplicant functionality of the network component when initiating a port connection request using **EAP TLS** authentication, in compliance with **802.1X-2020 [11]**.
 
-O-RAN 元件使用錯誤的身份（Certificate DN）。
-預期結果: RADIUS 認證失敗，拒絕網絡存取。
-錯誤的認證類型（可選）
+## Test Setup and Configuration
 
-O-RAN 元件使用非 TLS 的 EAP 驗證方式（例如 MD5）。
-預期結果: RADIUS 認證失敗，拒絕網絡存取。
+- **DUT (Device Under Test)**: The O-RAN component with **802.1X** enabled, with its Open Fronthaul interface being tested.
+- **RADIUS Server**: Set up and start a RADIUS authentication server (e.g., FreeRADIUS on Linux), with root, server, and client certificates configured, along with relevant `.cnf` and `eap.conf` files.
+- **Authenticator**: Use a host or device with the **802.1X** testing tool as the authenticator, configured to use **EAP TLS** authentication, and set the aforementioned RADIUS server as its authentication server.
+
+## Test Procedure
+
+1. **Set Up Authentication Environment**
+   - Configure and start the RADIUS server, ensuring that all necessary certificates and configuration files are correctly set up.
+   - Set up the **802.1X** testing tool as the authenticator, configured to use **EAP TLS** authentication.
+
+2. **Execute Test**
+   - Configure and enable the Open Fronthaul interface of the O-RAN component to start the port connection request as a Supplicant towards the authenticator.
+   - Observe and document the entire **802.1X** authentication process to ensure it completes successfully or fails as expected.
+
+## Test Scenarios
+
+1. **Correct Identity and Certificate**
+   - The O-RAN component uses the correct identity (Certificate DN) and a client certificate that is provisioned on the RADIUS server.
+   - **Expected Result**: Successful RADIUS authentication, allowing network access.
+
+2. **Correct Identity and Incorrect Certificate**
+   - The O-RAN component uses the correct identity (Certificate DN) but an incorrect client certificate that is not provisioned on the RADIUS server.
+   - **Expected Result**: RADIUS authentication fails, denying network access.
+
+3. **Incorrect Identity**
+   - The O-RAN component uses an incorrect identity (Certificate DN).
+   - **Expected Result**: RADIUS authentication fails, denying network access.
+
+4. **Incorrect Authentication Type (Optional)**
+   - The O-RAN component uses a non-TLS EAP authentication method (e.g., MD5).
+   - **Expected Result**: RADIUS authentication fails, denying network access.
 
 # RADIUS Flow Chart ref by RFC2716
 ```js
