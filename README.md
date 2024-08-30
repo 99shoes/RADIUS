@@ -109,11 +109,13 @@ Open Fronthaul network components (such as O-RU and O-DU) should support the rol
 ```
 
 ## Building
+```bash
 參照:https://docs.beamnetworks.dev/en/linux/networking/freeradius-install
 要修改的文件:
 /etc/freeradius/3.0底下的clients.conf、dictionary、certs
 /etc/freeradius/3.0/mods-enabled底下的eap
 /etc/freeradius/3.0/sites-enabled底下的default、inner-tunnel
+```
 
 ## Certificate
 ### Authenticator
@@ -189,7 +191,7 @@ openssl x509 -req -in client.csr -CA ca.pem -CAkey ca.key -CAcreateserial -out c
 ```
 
 ### 4. 驗證客戶端證書
-
+```bash
 底下為dictionary文件的內容
 ATTRIBUTE   User-Name                1       string
 ATTRIBUTE   User-Password            2       string
@@ -233,3 +235,4 @@ ATTRIBUTE   Port-Limit               62      integer
 ATTRIBUTE   Login-LAT-Port           63      integer
 ATTRIBUTE   EAP-Message              79      string
 ATTRIBUTE   Message-Authenticator    80      string
+```
